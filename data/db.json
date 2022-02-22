@@ -1,1 +1,1 @@
-{"users":[{"name":"Bazsi","temp":47}]}
+{"Bazsi":{"tempMin":31,"tempMax":25,"humMin":40,"humMax":60},"Tomi":{"tempMin":20,"tempMax":25,"humMin":40,"humMax":60}}
