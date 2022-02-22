@@ -1,1 +1,1 @@
-{"Bazsi":{"tempMin":44,"tempMax":25,"humMin":40,"humMax":60},"Tomi":{"tempMin":20,"tempMax":25,"humMin":40,"humMax":60}}
+{"Bazsi":{"tempMax":25,"humMin":40,"humMax":60,"tempMin":"22"},"Tomi":{"tempMin":"22","tempMax":25,"humMin":40,"humMax":60},"Gabi":{"tempMin":"22","tempMax":25,"humMin":40,"humMax":60}}

@@ -19,7 +19,6 @@ class UtilsWithio{
                         console.log("Fűtés bekapcs Bazsi")
                     }
                     break
-                    
                 }
             }
 }
@@ -27,8 +26,6 @@ class UtilsWithio{
 module.exports = {
     sendMessage: function(io_chart, data, port, temp){
         msgSplitted = data.split(",");
-        
-        
         swithByRoom(msgSplitted, io_chart);
         // ut = new UtilsWithio(io, port, temp);
         // ut.heatControl(msgSplitted);

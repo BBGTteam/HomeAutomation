@@ -1,5 +1,6 @@
 var jsonData = require('./jsonData');
 var arduino = require('./arduino');
+var messageFromClient = require('./messageFromClient');
 
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -20,18 +21,7 @@ const io_chart = socket(server, {
   }  
 });  
 
-io_chart.on('connection', function(socket) {
-  console.log('Node is listening to chart');
-  console.log(`new connection id: ${socket.id}`);
-  
-  socket.on("message", (data) => {
-    // if (data == '0ledCp') arduino.sendSerialMessage(data);
-    if (data == 'Get temp') getTemp();
-    if (data == 'setTemp') jsonData.setTemp();
-    else arduino.sendSerialMessage(data);
-    
-  });  
-});  
+messageFromClient.listenMessageFromClient(io_chart, socket);
 
 arduino.arduino(io_chart, temp);
 

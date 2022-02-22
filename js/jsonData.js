@@ -28,23 +28,37 @@ module.exports = {
         return temp;
       },
 
-      setTemp: function(){
+      setTemp: function(name, temp){
         jsonReader("./data/db.json", (err, customer) => {
             if (err) {
               console.log("Error reading file:", err);
               return;
             }
-            // increase customer order count by 1
-              customer.Bazsi.tempMin += 1;
-              console.log(customer.Bazsi.tempMin);
-              fs.writeFile("./data/db.json", JSON.stringify(customer), err => {
-                if (err) console.log("Error writing file:", err);
-              });
+            swithByRoom(name, temp, customer);
+            fs.writeFile("./data/db.json", JSON.stringify(customer), err => {
+              if (err) console.log("Error writing file:", err);
             });
+          });
         }
-      
     }
     
+    function swithByRoom(name, temp, customer){
+      switch(name){
+          case "Bazsi":
+            customer.Bazsi.tempMin = temp;
+            console.log("Bazsi temp: " + temp);
+            break;
+          case "Tomi":
+            customer.Tomi.tempMin = temp;
+            console.log("Tomi temp: " + temp);
+            break;
+          case "Gabi":
+            customer.Gabi.tempMin = temp;
+            console.log("Gabi temp: " + temp);
+            break;
+      }
+  }
+
 function jsonReader(filePath, cb) {
     fs.readFile(filePath, (err, fileData) => {
         if (err) {
