@@ -10,8 +10,8 @@ const app = express();
 app.use(cors({origin: '*'}));
 app.use(bodyParser.json());
 
-const server = app.listen(3005,() => {
-  console.log('Started in 3005');
+const server = app.listen(3000,() => {
+  console.log('Started in 3000');
 });  
 
 const io_chart = socket(server, {
@@ -25,9 +25,10 @@ io_chart.on('connection', function(socket) {
   console.log(`new connection id: ${socket.id}`);
   
   socket.on("message", (data) => {
-    if (data == '0ledCp') arduino.sendSerialMessage(data);
+    // if (data == '0ledCp') arduino.sendSerialMessage(data);
     if (data == 'Get temp') getTemp();
     if (data == 'setTemp') jsonData.setTemp();
+    else arduino.sendSerialMessage(data);
     
   });  
 });  

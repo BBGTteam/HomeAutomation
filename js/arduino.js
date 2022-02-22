@@ -1,4 +1,3 @@
-
 var utils = require('./utils');
 var SerialPort = require('serialport');
 
@@ -24,9 +23,12 @@ module.exports = {
           parser.on('data', function(data) {
             utils.sendMessage(io_chart, data, port, temp);
           });
+
     },
 
     sendSerialMessage: function (message){
+        console.log("Message send to arduino: " + message);
         port.write(message);
-    }
+    },
+    
 }
