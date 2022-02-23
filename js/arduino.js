@@ -22,9 +22,10 @@ module.exports = {
   arduino: function (io_chart){
     
     parser.on('data', function(data) {
-    let setupBazsi = jsonData.getSetup("Bazsi");
-    let tempBazsi = jsonData.getTempMin(setupBazsi);
-    utils.sendMessage(io_chart, data, tempBazsi);
+    let tempBazsi = jsonData.getTempMin("Bazsi");
+    let tempTomi = jsonData.getTempMin("Tomi");
+    let tempGabi = jsonData.getTempMin("Gabi");
+    utils.sendMessage(io_chart, data, tempBazsi, tempTomi, tempGabi);
 
     });
     

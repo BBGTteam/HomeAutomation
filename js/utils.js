@@ -1,10 +1,10 @@
 var heater = require('./heater');
 
 module.exports = {
-    sendMessage: function(io_chart, data, tempBazsi){
+    sendMessage: function(io_chart, data, tempBazsi, tempTomi, tempGabi){
         msgSplitted = data.split(",");
         swithByRoom(msgSplitted, io_chart);
-        heater.heatControl(msgSplitted, tempBazsi);
+        heater.heatControl(msgSplitted, tempBazsi, tempTomi, tempGabi);
     }
 }
 

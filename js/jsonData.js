@@ -22,14 +22,13 @@ module.exports = {
         console.log(temp);
       },
 
-      getTempMin: function(datas){
-        // const temp = parseFloat(datas.tempMin);
+      getTempMin: function(room){
+        let datas = this.getSetup(room);
+        // console.log(datas);
+        let temp = parseFloat(datas.tempMin);
         // console.log(temp);
-        return parseFloat(datas.tempMin);
-      },
 
-      getheatState: function(datas){
-        return datas.heatState;
+        return temp;
       },
 
       setTemp: function(name, temp){
