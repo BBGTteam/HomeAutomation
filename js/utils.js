@@ -1,34 +1,10 @@
-class UtilsWithio{
-    constructor(io, port, temp){
-        this.io = io;
-        this.port = port;
-        this.temp = temp;
-    }
-    
-    //Fűtés vezérlése
-    heatControl(data){
-            switch(data[0]){
-                case "Tomi":
-                    if (parseFloat(data[1]) < this.temp){
-                        this.port.write('0ledCp');
-                        console.log("Fűtés bekapcs Tomi")
-                    }
-                    break
-                case "Bazsi":
-                    if (parseFloat(data[1]) < 25){
-                        console.log("Fűtés bekapcs Bazsi")
-                    }
-                    break
-                }
-            }
-}
- 
+var heater = require('./heater');
+
 module.exports = {
-    sendMessage: function(io_chart, data, port, temp){
+    sendMessage: function(io_chart, data, tempBazsi){
         msgSplitted = data.split(",");
         swithByRoom(msgSplitted, io_chart);
-        // ut = new UtilsWithio(io, port, temp);
-        // ut.heatControl(msgSplitted);
+        heater.heatControl(msgSplitted, tempBazsi);
     }
 }
 

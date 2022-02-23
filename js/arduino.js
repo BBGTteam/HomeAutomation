@@ -1,4 +1,5 @@
 var utils = require('./utils');
+var jsonData = require('./jsonData');
 var SerialPort = require('serialport');
 
 var port = new SerialPort('/dev/ttyUSB0',{ 
@@ -9,26 +10,29 @@ var port = new SerialPort('/dev/ttyUSB0',{
   flowControl: false
 });
 
+const parsers = SerialPort.parsers;
+
+const parser = new parsers.Readline({
+    delimiter: '\r\n'
+  });
+  
+  port.pipe(parser);
+
 module.exports = {
-    arduino: function (io_chart, temp){
+  arduino: function (io_chart){
+    
+    parser.on('data', function(data) {
+    let setupBazsi = jsonData.getSetup("Bazsi");
+    let tempBazsi = jsonData.getTempMin(setupBazsi);
+    utils.sendMessage(io_chart, data, tempBazsi);
 
-        const parsers = SerialPort.parsers;
-        
-        const parser = new parsers.Readline({
-            delimiter: '\r\n'
-          });
-          
-          port.pipe(parser);
-          
-          parser.on('data', function(data) {
-            utils.sendMessage(io_chart, data, port, temp);
-          });
-
-    },
-
-    sendSerialMessage: function (message){
-        console.log("Message send to arduino: " + message);
-        port.write(message);
-    },
+    });
+    
+  },
+  
+  sendSerialMessage: function (message){
+      console.log("Message send to arduino: " + message);
+      port.write(message);
+  }
     
 }

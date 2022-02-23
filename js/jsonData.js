@@ -23,9 +23,13 @@ module.exports = {
       },
 
       getTempMin: function(datas){
-        const temp = parseFloat(datas.tempMin);
-        console.log(temp);
-        return temp;
+        // const temp = parseFloat(datas.tempMin);
+        // console.log(temp);
+        return parseFloat(datas.tempMin);
+      },
+
+      getheatState: function(datas){
+        return datas.heatState;
       },
 
       setTemp: function(name, temp){

@@ -1,4 +1,3 @@
-var jsonData = require('./jsonData');
 var arduino = require('./arduino');
 var messageFromClient = require('./messageFromClient');
 
@@ -23,10 +22,6 @@ const io_chart = socket(server, {
 
 messageFromClient.listenMessageFromClient(io_chart, socket);
 
-arduino.arduino(io_chart, temp);
-
-var bazsiSetup = jsonData.getSetup("Bazsi");
-var temp = jsonData.getTempMin(bazsiSetup);
-console.log(bazsiSetup);
+arduino.arduino(io_chart);
 
 // emails.sendEmail("Server start");

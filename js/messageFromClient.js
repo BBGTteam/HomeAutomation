@@ -1,12 +1,11 @@
 var jsonData = require('./jsonData');
-var arduino = require('./arduino');
 
 module.exports = {
     listenMessageFromClient: function (io_chart){
+        var arduino = require('./arduino');
         io_chart.on('connection', function(socket) {
             console.log('Node is listening to chart');
             console.log(`new connection id: ${socket.id}`);
-            
             socket.on("message", (data) => {
             if (data == 'Get temp') getTemp();
             if (data.includes('setTemp')) splitMessage(data);

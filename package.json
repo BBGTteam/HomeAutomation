@@ -9,6 +9,7 @@
     "dependencies": {
         "gauge-chart": "^0.5.3",
         "google-charts-node": "^1.0.4",
+        "madge": "^5.0.1",
         "mysql": "^2.18.1",
         "node-fetch": "^3.2.0",
         "node-monitor": "^0.3.11",
