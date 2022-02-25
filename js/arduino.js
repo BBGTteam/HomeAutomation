@@ -26,7 +26,6 @@ module.exports = {
     let tempTomi = jsonData.getTempMin("Tomi");
     let tempGabi = jsonData.getTempMin("Gabi");
     utils.sendMessage(io_chart, data, tempBazsi, tempTomi, tempGabi);
-
     });
     
   },
